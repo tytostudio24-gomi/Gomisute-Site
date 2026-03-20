@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gomisute.vercel.app/sitemap.xml

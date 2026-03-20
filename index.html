@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ゴミ捨てリマインダー - AIとApple Watchで、忘れないゴミ捨て。</title>
+  
+  <!-- SEO & OGP Tags -->
+  <meta name="description" content="「ゴミ捨てリマインダー」は、日本の複雑なゴミ収集カレンダーをAIがカメラから瞬時に読み取り、Apple WatchやSiriと連携して当日のゴミ出しを通知してくれるiPhoneアプリです。">
+  <meta property="og:title" content="ゴミ捨てリマインダー - AIとApple Watchで、忘れないゴミ捨て。">
+  <meta property="og:description" content="「ゴミ捨てリマインダー」は、日本の複雑なゴミ収集カレンダーをAIがカメラから瞬時に読み取り、Apple WatchやSiriと連携して当日のゴミ出しを通知してくれるiPhoneアプリです。">
+  <meta property="og:image" content="https://gomisute.vercel.app/gomisute-logo.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gomisute.vercel.app/">
+  <meta property="og:site_name" content="ゴミ捨てリマインダー">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar reveal">
+    <div class="nav-content">
+      <div class="logo">
+        <a href="index.html">
+          <img src="gomisute-logo.jpg" alt="Logo" class="nav-logo-icon">
+          ゴミ捨てリマインダー
+        </a>
+      </div>
+      <div class="nav-actions">
+        <div class="nav-desktop-links">
+          <a href="blog.html" class="nav-link">ブログ</a>
+          <a href="privacy.html" class="nav-link">プライバシーポリシー</a>
+        </div>
+        <a href="https://apps.apple.com/jp/app/%E3%82%B4%E3%83%9F%E6%8D%A8%E3%81%A6%E3%83%AA%E3%83%9E%E3%82%A4%E3%83%B3%E3%83%80%E3%83%BC/id6758884149"
+          target="_blank" class="nav-btn">ダウンロード</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="blog.html" class="mobile-nav-link">ブログ</a>
+      <a href="privacy.html" class="mobile-nav-link">プライバシーポリシー</a>
+    </div>
+  </nav>
+
+  <!-- 1. ヒーローセクション -->
+  <section class="hero reveal">
+    <div class="hero-text">
+      <h1 class="headline">AIとApple Watchで、<br>忘れないゴミ捨て。</h1>
+    </div>
+    <div class="hero-animation-container" id="hero-animation">
+      <div class="hero-images">
+        <img src="hero-1.png" alt="Hero part 1" class="hero-image-part part-1">
+        <img src="hero-2.png" alt="Hero part 2" class="hero-image-part part-2">
+      </div>
+      <div class="hero-notification">
+        <div class="notification-header">
+          <img src="gomisute-logo.jpg" alt="App Logo" class="notification-icon">
+          <span class="notification-app-name">ゴミ捨てリマインダー</span>
+          <span class="notification-time">現在</span>
+        </div>
+        <div class="notification-body">
+          <p class="notification-title">明日は燃えるゴミです</p>
+          <p class="notification-text">ゴミ捨ての準備をしましょう</p>
+        </div>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a href="https://apps.apple.com/jp/app/%E3%82%B4%E3%83%9F%E6%8D%A8%E3%81%A6%E3%83%AA%E3%83%9E%E3%82%A4%E3%83%B3%E3%83%80%E3%83%BC/id6758884149"
+        target="_blank" rel="noopener noreferrer" class="cta-button">App Storeで無料ダウンロード</a>
+    </div>
+  </section>
+
+  <!-- 2. 主要機能セクション -->
+  <section class="features">
+    <!-- Feature A (AI) -->
+    <div class="feature-block reveal row-normal">
+      <div class="feature-text">
+        <h2 class="feature-headline">もう、面倒な手入力はいらない。</h2>
+        <p class="feature-desc">日本の不規則なゴミカレンダーを、AIが写真から一括スキャン。</p>
+      </div>
+      <div class="feature-visual">
+        <img src="CalnderView.png" alt="AIによるスキャン画面" class="placeholder-img aspect-iphone">
+      </div>
+    </div>
+
+    <!-- Feature B (Watch) -->
+    <div class="feature-block reveal row-reverse">
+      <div class="feature-text">
+        <h2 class="feature-headline">手首を見るだけで、<br>今日の予定がわかる。</h2>
+        <p class="feature-desc">専用Watchアプリ搭載。光るリングUIで瞬時に確認。</p>
+      </div>
+      <div class="feature-visual">
+        <img src="Apple-watch.png" alt="Apple Watch リングUI" class="placeholder-img aspect-watch">
+      </div>
+    </div>
+
+    <!-- Feature C (Siri/Widget) -->
+    <div class="feature-block reveal row-normal">
+      <div class="feature-text">
+        <h2 class="feature-headline">「Hey Siri, 明日のゴミは何？」</h2>
+        <p class="feature-desc">音声操作と、時間で『明日』に切り替わる動的ウィジェット。</p>
+        <div class="feature-links">
+          <a href="siri-setup.html" class="feature-link">Siriへの設定方法 &rarr;</a>
+          <a href="alexa-setup.html" class="feature-link">Alexaへの設定方法 &rarr;</a>
+        </div>
+      </div>
+      <div class="feature-visual">
+        <img src="siri.jpeg" alt="ウィジェットとSiriの画面" class="placeholder-img aspect-iphone">
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. アクセシビリティ・セクション -->
+  <section class="accessibility reveal">
+    <div class="acc-content">
+      <h2 class="acc-headline">すべての人に、使いやすい体験を。</h2>
+      <p class="acc-desc">VoiceOverによる自然な読み上げに徹底対応。<br>視覚に障がいのある方でも、Envisionアプリ等と組み合わせることで<br>単独で快適にご利用いただけます。</p>
+      <div class="acc-visual">
+        <img src="VoiceOver.PNG" alt="VoiceOverのフォーカスUI画面" class="placeholder-img aspect-iphone-landscape">
+      </div>
+    </div>
+  </section>
+
+  <!-- アップデート情報セクション -->
+  <section class="updates reveal">
+    <div class="updates-header">
+      <h2 class="updates-headline">What's New</h2>
+      <a href="blog.html" class="view-all-link">すべてのアップデートを見る &rarr;</a>
+    </div>
+    <div class="updates-list">
+      <!-- LATEST_UPDATES_START -->
+
+      <a href="blog/cu13-j8qlrm1.html" class="update-item">
+        <span class="update-date">2026.03.20</span>
+        <span class="update-tag">アップデート情報</span>
+        <h3 class="update-title">Vr.1.3 AppleWatch & Siriに対応しました。</h3>
+      </a>
+    
+      <!-- LATEST_UPDATES_END -->
+    </div>
+  </section>
+
+  <!-- 4. 開発者ストーリー ＆ クロージング -->
+  <section class="developer-story reveal">
+    <div class="story-content">
+      <h2 class="story-headline">ないなら、作ってしまえ。</h2>
+      <p class="story-desc">
+        私自身がゴミ出しを忘れてしまうペインから生まれた個人開発アプリです。<br>
+        最新技術と情熱で、あなたの毎日の憂鬱を少しだけスマートに変えます。<br>
+        <span class="developer-name">(TytoStudio)</span>
+      </p>
+      <div class="story-cta" id="download">
+        <a href="https://apps.apple.com/jp/app/%E3%82%B4%E3%83%9F%E6%8D%A8%E3%81%A6%E3%83%AA%E3%83%9E%E3%82%A4%E3%83%B3%E3%83%80%E3%83%BC/id6758884149"
+          target="_blank" rel="noopener noreferrer" class="cta-button primary">App Storeでダウンロード</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. フッター -->
+  <footer class="footer">
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="blog.html">ブログ</a></li>
+        <li><a href="privacy.html">プライバシーポリシー</a></li>
+        <li><a href="#">お問い合わせ</a></li>
+        <li><a href="#">X (Twitter)</a></li>
+      </ul>
+      <p class="copyright">&copy; 2026 TytoStudio All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/scripts.js"></script>
+</body>
+
+</html>

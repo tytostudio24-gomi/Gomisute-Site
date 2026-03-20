@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Siriへの設定方法 - ゴミ捨てリマインダー</title>
+  
+  <!-- SEO & OGP Tags -->
+  <meta name="description" content="「Hey Siri, 明日のゴミは何？」でゴミの日の予定を聞く機能の設定方法を解説しています。Appleのショートカットアプリとの連携手順をご確認ください。">
+  <meta property="og:title" content="Siriへの設定方法 - ゴミ捨てリマインダー">
+  <meta property="og:description" content="「Hey Siri, 明日のゴミは何？」でゴミの日の予定を聞く機能の設定方法を解説しています。Appleのショートカットアプリとの連携手順をご確認ください。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gomisute.vercel.app/siri-setup.html">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .legal-content {
+      max-width: 800px;
+      margin: 140px auto 80px;
+      padding: 0 20px;
+      line-height: 1.8;
+    }
+    .legal-content h1 {
+      font-size: clamp(28px, 5vw, 40px);
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .legal-content h2 {
+      font-size: 24px;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--color-placeholder);
+      padding-bottom: 10px;
+    }
+    .legal-content p, .legal-content ul, .legal-content ol {
+      margin-bottom: 20px;
+      color: var(--color-text-light);
+    }
+    .legal-content ol {
+      padding-left: 24px;
+    }
+    .legal-content li {
+      margin-bottom: 15px;
+    }
+    .legal-content strong {
+      color: var(--color-text);
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-content">
+      <div class="logo">
+        <a href="index.html">
+          <img src="gomisute-logo.jpg" alt="Logo" class="nav-logo-icon">
+          ゴミ捨てリマインダー
+        </a>
+      </div>
+      <div class="nav-actions">
+        <div class="nav-desktop-links">
+          <a href="blog.html" class="nav-link">ブログ</a>
+          <a href="privacy.html" class="nav-link">プライバシーポリシー</a>
+        </div>
+        <a href="index.html#download" class="nav-btn">ダウンロード</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="blog.html" class="mobile-nav-link">ブログ</a>
+      <a href="privacy.html" class="mobile-nav-link">プライバシーポリシー</a>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <main class="legal-content">
+    <h1>Siriへの設定方法</h1>
+    <p>iPhoneのショートカットアプリを使って、Siriでゴミのスケジュールを確認できるようにする手順です。</p>
+    
+    <h2>設定手順</h2>
+    <ol>
+      <li>iPhoneの「ショートカット」アプリを開きます。</li>
+      <li>右上の「＋」ボタンをタップして、新しいショートカットを作成します。</li>
+      <li>「アクションを追加」をタップし、「ゴミ捨てリマインダー」アプリを選択します。</li>
+      <li>ショートカット名（Siriに呼びかける言葉）を「明日のゴミ」などに設定して保存します。</li>
+    </ol>
+
+    <div style="background-color: #f5f5f7; padding: 20px; border-radius: 12px; margin-top: 40px;">
+      <p style="margin: 0; color: var(--color-text);"><strong>これで完了！あとは 「Hey Siri, 明日のゴミ（2番で設定したショートカット名）」 と言うだけで、Siriがゴミの予定を教えてくれます！</strong></p>
+    </div>
+    
+    <div style="text-align: center; margin-top: 60px;">
+      <a href="index.html" style="color: var(--color-accent); text-decoration: none; font-weight: 500;">&larr; トップページへ戻る</a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="privacy.html">プライバシーポリシー</a></li>
+        <li><a href="#">お問い合わせ</a></li>
+        <li><a href="#">X (Twitter)</a></li>
+      </ul>
+      <p class="copyright">&copy; 2026 TytoStudio All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/scripts.js"></script>
+</body>
+
+</html>
