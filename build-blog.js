@@ -97,6 +97,7 @@ function generateBlogIndex(blogs) {
   <meta property="og:image" content="${SITE_URL}/gomisute-logo.jpg">
   <meta property="og:site_name" content="ゴミ捨てリマインダー">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="google-site-verification" content="XZkDY7y-GVfQq3cuGQ9Szlr42o10cL_jCbJs-I0aBD8" />
 
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -143,6 +144,7 @@ function generateArticlePage(blog) {
   <meta property="og:image" content="${imageUrl}?w=1200&h=630&fit=crop" />
   <meta property="og:site_name" content="ゴミ捨てリマインダー" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="google-site-verification" content="XZkDY7y-GVfQq3cuGQ9Szlr42o10cL_jCbJs-I0aBD8" />
 </head>
 <body>
   ${getNavHtml('../')}
