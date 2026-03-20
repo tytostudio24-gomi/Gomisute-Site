@@ -60,7 +60,7 @@ const getFooterHtml = (basePath) => `
         <li><a href="${basePath}blog.html">ブログ</a></li>
         <li><a href="${basePath}privacy.html">プライバシーポリシー</a></li>
         <li><a href="${basePath}contact.html">お問い合わせ</a></li>
-        <li><a href="#">X (Twitter)</a></li>
+        <li><a href="https://x.com/TytoStudi0" target="_blank">X (Twitter)</a></li>
       </ul>
       <p class="copyright">&copy; 2026 TytoStudio All rights reserved.</p>
     </div>
