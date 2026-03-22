@@ -3,6 +3,7 @@ const path = require('path');
 
 const API_KEY = "ZZUf1ASi5lIbZbP1AMf2eXoNJdzvmUtAcz5D";
 const ENDPOINT = "https://tytostudio-gomisute.microcms.io/api/v1/blogs";
+const FAQ_ENDPOINT = "https://tytostudio-gomisute.microcms.io/api/v1/faq";
 
 // 本番稼働するホスティングドメイン（暫定として .vercel.app を設定）
 // 開発後や独自ドメイン設定後にここを更新します。
@@ -14,6 +15,19 @@ async function fetchBlogs() {
   });
   if (!res.ok) {
     throw new Error(`Failed to fetch blogs: ${res.status} ${res.statusText}`);
+  }
+  const data = await res.json();
+  return data.contents;
+}
+
+async function fetchFaqs() {
+  const res = await fetch(FAQ_ENDPOINT, {
+    headers: { "X-MICROCMS-API-KEY": API_KEY }
+  });
+  if (!res.ok) {
+    // If endpoint doesn't exist yet, return empty array to prevent build crash
+    console.warn(`Failed to fetch FAQs: ${res.status} ${res.statusText}`);
+    return [];
   }
   const data = await res.json();
   return data.contents;
@@ -35,6 +49,7 @@ const getNavHtml = (basePath) => `
       </div>
       <div class="nav-actions">
         <div class="nav-desktop-links">
+          <a href="${basePath}faq.html" class="nav-link">よくあるご質問</a>
           <a href="${basePath}blog.html" class="nav-link">ブログ</a>
           <a href="${basePath}privacy.html" class="nav-link">プライバシーポリシー</a>
         </div>
@@ -47,6 +62,7 @@ const getNavHtml = (basePath) => `
       </div>
     </div>
     <div class="mobile-menu" id="mobile-menu">
+      <a href="${basePath}faq.html" class="mobile-nav-link">よくあるご質問</a>
       <a href="${basePath}blog.html" class="mobile-nav-link">ブログ</a>
       <a href="${basePath}privacy.html" class="mobile-nav-link">プライバシーポリシー</a>
     </div>
@@ -57,6 +73,7 @@ const getFooterHtml = (basePath) => `
   <footer class="footer">
     <div class="footer-content">
       <ul class="footer-links">
+        <li><a href="${basePath}faq.html">よくあるご質問</a></li>
         <li><a href="${basePath}blog.html">ブログ</a></li>
         <li><a href="${basePath}privacy.html">プライバシーポリシー</a></li>
         <li><a href="${basePath}contact.html">お問い合わせ</a></li>
@@ -214,6 +231,97 @@ function updateIndexHtmlWithLatest(blogs) {
   }
 }
 
+function updateIndexHtmlWithFaqs(faqs) {
+  if (faqs.length === 0) return;
+  const topFaqs = faqs.slice(0, 3);
+  const itemsHtml = topFaqs.map(faq => `
+        <div class="qa-item">
+          <button class="qa-question">
+            <span>${faq.question}</span>
+            <svg class="qa-icon" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg>
+          </button>
+          <div class="qa-answer">
+            <div style="padding-bottom: 24px; font-size: 16px; color: var(--color-text-light); line-height: 1.6;">
+              ${faq.answer || ''}
+            </div>
+          </div>
+        </div>
+  `).join('');
+
+  const indexPath = path.join(__dirname, 'index.html');
+  const indexContent = fs.readFileSync(indexPath, 'utf-8');
+
+  // Replace content between <!-- LATEST_FAQ_START --> and <!-- LATEST_FAQ_END -->
+  const startIndex = indexContent.indexOf('<!-- LATEST_FAQ_START -->');
+  const endIndex = indexContent.indexOf('<!-- LATEST_FAQ_END -->');
+
+  if (startIndex !== -1 && endIndex !== -1) {
+    const before = indexContent.substring(0, startIndex + '<!-- LATEST_FAQ_START -->'.length);
+    const after = indexContent.substring(endIndex);
+    const newContent = before + '\n' + itemsHtml + '\n        ' + after;
+    fs.writeFileSync(indexPath, newContent);
+    console.log(" -> index.html successfully updated with latest FAQs.");
+  } else {
+    console.warn(" -> Warning: LATEST_FAQ placeholders not found in index.html.");
+  }
+}
+
+function generateFaqPage(faqs) {
+  const itemsHtml = faqs.map(faq => `
+        <div class="qa-item">
+          <button class="qa-question">
+            <span>${faq.question}</span>
+            <svg class="qa-icon" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg>
+          </button>
+          <div class="qa-answer">
+            <div style="padding-bottom: 24px; font-size: 16px; color: var(--color-text-light); line-height: 1.6;">
+              ${faq.answer || ''}
+            </div>
+          </div>
+        </div>
+  `).join('');
+
+  return `<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>よくあるご質問 - ゴミ捨てリマインダー</title>
+  
+  <!-- SEO & OGP Tags -->
+  <meta name="description" content="ゴミ捨てリマインダーに関するよくあるご質問（FAQ）をまとめています。">
+  <meta property="og:title" content="よくあるご質問 - ゴミ捨てリマインダー">
+  <meta property="og:description" content="ゴミ捨てリマインダーに関するよくあるご質問（FAQ）をまとめています。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="${SITE_URL}/faq.html">
+  <meta property="og:image" content="${SITE_URL}/gomisute-logo.jpg">
+  <meta property="og:site_name" content="ゴミ捨てリマインダー">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  ${getNavHtml('')}
+  <main class="blog-index-page">
+    <div class="blog-header">
+      <h1 class="headline">よくあるご質問</h1>
+      <p class="feature-desc" style="font-size:18px;">アプリに関するご不明な点はこちらをご確認ください。</p>
+    </div>
+    
+    <section class="qa" style="padding-top: 0; margin-top: -40px;">
+      <div class="qa-content">
+        <div class="qa-list">
+${itemsHtml}
+        </div>
+      </div>
+    </section>
+  </main>
+  ${getFooterHtml('')}
+  <script src="js/scripts.js"></script>
+</body>
+</html>`;
+}
+
 function generateSitemap(blogs) {
   const currentDate = new Date().toISOString();
   let urls = `
@@ -224,6 +332,11 @@ function generateSitemap(blogs) {
   </url>
   <url>
     <loc>${SITE_URL}/blog.html</loc>
+    <lastmod>${currentDate}</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>${SITE_URL}/faq.html</loc>
     <lastmod>${currentDate}</lastmod>
     <priority>0.8</priority>
   </url>
@@ -271,6 +384,17 @@ async function build() {
 
   console.log("Updating index.html with latest updates...");
   updateIndexHtmlWithLatest(blogs);
+
+  console.log("Fetching FAQs from MicroCMS...");
+  const faqs = await fetchFaqs();
+  console.log(`Fetched ${faqs.length} FAQs.`);
+
+  console.log("Generating faq.html...");
+  const faqHtml = generateFaqPage(faqs);
+  fs.writeFileSync(path.join(__dirname, 'faq.html'), faqHtml);
+
+  console.log("Updating index.html with latest FAQs...");
+  updateIndexHtmlWithFaqs(faqs);
 
   const blogDir = path.join(__dirname, 'blog');
   if (!fs.existsSync(blogDir)) {

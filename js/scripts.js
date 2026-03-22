@@ -48,4 +48,30 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
     });
   }
+  // Q&A Accordion
+  const qaQuestions = document.querySelectorAll('.qa-question');
+  qaQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+      const item = question.closest('.qa-item');
+      const answer = item.querySelector('.qa-answer');
+      const isOpen = item.classList.contains('active');
+      
+      // Close all other open items
+      document.querySelectorAll('.qa-item.active').forEach(activeItem => {
+        if (activeItem !== item) {
+          activeItem.classList.remove('active');
+          activeItem.querySelector('.qa-answer').style.maxHeight = null;
+        }
+      });
+      
+      // Toggle current item
+      if (isOpen) {
+        item.classList.remove('active');
+        answer.style.maxHeight = null;
+      } else {
+        item.classList.add('active');
+        answer.style.maxHeight = answer.scrollHeight + "px";
+      }
+    });
+  });
 });
