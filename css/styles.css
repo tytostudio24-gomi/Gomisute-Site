@@ -729,9 +729,7 @@ img.placeholder-img {
 }
 
 /* カスタムダウンロードボタン（クラス指定用） */
-.article-content a.download-btn,
-/* App Storeへのリンクを自動的にボタン化 */
-.article-content a[href*="apps.apple.com"] {
+.article-content a.download-btn {
   display: inline-block;
   background-color: var(--color-text);
   color: var(--color-bg);
@@ -744,6 +742,30 @@ img.placeholder-img {
   margin: 30px 0;
   transition: transform 0.2s ease, opacity 0.2s ease;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  word-break: keep-all;
+}
+
+/* App Storeへのリンクを自動的にボタン化（URL直貼り対策） */
+.article-content a[href*="apps.apple.com"] {
+  display: inline-block;
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  padding: 14px 28px;
+  font-size: 0; /* 元のURLテキスト・長い文字列を隠す */
+  font-weight: 500;
+  border-radius: 980px;
+  text-decoration: none;
+  text-align: center;
+  margin: 30px 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  vertical-align: middle;
+}
+
+/* 隠したURLテキストの代わりに、疑似要素で綺麗なボタン名を表示する */
+.article-content a[href*="apps.apple.com"]::before {
+  content: "App Storeでダウンロード";
+  font-size: 17px; /* ここで文字サイズを復活させる */
 }
 
 .article-content a.download-btn:hover,
