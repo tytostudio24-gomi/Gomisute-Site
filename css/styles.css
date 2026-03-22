@@ -728,6 +728,31 @@ img.placeholder-img {
   opacity: 0.8;
 }
 
+/* カスタムダウンロードボタン（クラス指定用） */
+.article-content a.download-btn,
+/* App Storeへのリンクを自動的にボタン化 */
+.article-content a[href*="apps.apple.com"] {
+  display: inline-block;
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  padding: 14px 28px;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 980px;
+  text-decoration: none;
+  text-align: center;
+  margin: 30px 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.article-content a.download-btn:hover,
+.article-content a[href*="apps.apple.com"]:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+  text-decoration: none;
+}
+
 .article-footer {
   margin-top: 80px;
   padding-top: 40px;
@@ -923,6 +948,19 @@ img.placeholder-img {
   line-height: 1.6;
 }
 
+.qa-answer ul,
+.qa-answer ol {
+  padding-left: 28px;
+  padding-bottom: 24px;
+  font-size: 16px;
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+.qa-answer li {
+  margin-bottom: 8px;
+}
+
 @media (max-width: 600px) {
   .update-item {
     flex-direction: column;
@@ -1032,7 +1070,9 @@ img.placeholder-img {
     padding: 16px 0;
   }
 
-  .qa-answer p {
+  .qa-answer p,
+  .qa-answer ul,
+  .qa-answer ol {
     font-size: 15px;
     padding-bottom: 20px;
   }
