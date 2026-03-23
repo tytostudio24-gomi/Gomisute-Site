@@ -86,7 +86,7 @@ const getFooterHtml = (basePath) => `
 
 function generateBlogIndex(blogs) {
   const cardsHtml = blogs.map(blog => {
-    const imageUrl = blog.eyecatch ? blog.eyecatch.url : 'gomisute-logo.jpg';
+    const imageUrl = blog.eyecatch ? blog.eyecatch.url : 'default-thumbnail.jpg';
     return `
       <a href="blog/${blog.id}.html" class="blog-card">
         <div class="blog-card-image" style="background-image: url('${imageUrl}?w=600&h=338&fit=crop');"></div>
@@ -136,7 +136,7 @@ function generateBlogIndex(blogs) {
 }
 
 function generateArticlePage(blog) {
-  const imageUrl = blog.eyecatch ? blog.eyecatch.url : '../gomisute-logo.jpg';
+  const imageUrl = blog.eyecatch ? blog.eyecatch.url : '../default-thumbnail.jpg';
   
   // Create a plain text description from MicroCMS rich text (strip HTML tags, limit to 100 chars)
   let description = "";
