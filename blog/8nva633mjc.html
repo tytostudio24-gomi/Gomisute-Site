@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>都道府県選択UIの別解提案。 - ゴミ捨てリマインダー</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  
+  <!-- OGP & SEO Tags -->
+  <meta name="description" content="「47都道府県から自分の住んでいる場所を選ぶ」アプリ開発者なら一度は通る道ですが、これ、ユーザー視点だと地味にストレスフルな作業ですよね。今回は、僕が最新のiOS 18環境で実装した「都道府県選択UI..." />
+  <meta property="og:title" content="都道府県選択UIの別解提案。" />
+  <meta property="og:description" content="「47都道府県から自分の住んでいる場所を選ぶ」アプリ開発者なら一度は通る道ですが、これ、ユーザー視点だと地味にストレスフルな作業ですよね。今回は、僕が最新のiOS 18環境で実装した「都道府県選択UI..." />
+  <meta property="og:url" content="https://gomisute.vercel.app/blog/8nva633mjc.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="../default-thumbnail.jpg?w=1200&h=630&fit=crop" />
+  <meta property="og:site_name" content="ゴミ捨てリマインダー" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="google-site-verification" content="XZkDY7y-GVfQq3cuGQ9Szlr42o10cL_jCbJs-I0aBD8" />
+</head>
+<body>
+  
+  <nav class="navbar">
+    <div class="nav-content">
+      <div class="logo">
+        <a href="../index.html">
+          <img src="../gomisute-logo.jpg" alt="Logo" class="nav-logo-icon">
+          ゴミ捨てリマインダー
+        </a>
+      </div>
+      <div class="nav-actions">
+        <div class="nav-desktop-links">
+          <a href="../faq.html" class="nav-link">よくあるご質問</a>
+          <a href="../blog.html" class="nav-link">ブログ</a>
+          <a href="../privacy.html" class="nav-link">プライバシーポリシー</a>
+        </div>
+        <a href="https://apps.apple.com/jp/app/%E3%82%B4%E3%83%9F%E6%8D%A8%E3%81%A6%E3%83%AA%E3%83%9E%E3%82%A4%E3%83%B3%E3%83%80%E3%83%BC/id6758884149" target="_blank" class="nav-btn">ダウンロード</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="../faq.html" class="mobile-nav-link">よくあるご質問</a>
+      <a href="../blog.html" class="mobile-nav-link">ブログ</a>
+      <a href="../privacy.html" class="mobile-nav-link">プライバシーポリシー</a>
+    </div>
+  </nav>
+
+  
+  <article class="article-page reveal active">
+    <div class="article-hero">
+      <div class="article-hero-image" style="background-image: url('../default-thumbnail.jpg?w=2400&h=1000&fit=crop');"></div>
+    </div>
+    <div class="article-container">
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="article-date">2026.04.03</span>
+          
+        </div>
+        <h1 class="article-title">都道府県選択UIの別解提案。</h1>
+      </header>
+      
+      <div class="article-content">
+        <p>「47都道府県から自分の住んでいる場所を選ぶ」</p><p>アプリ開発者なら一度は通る道ですが、これ、ユーザー視点だと地味にストレスフルな作業ですよね。今回は、僕が最新のiOS 18環境で実装した「都道府県選択UIの別解」について書いてみます。</p><hr><h2 id="h876306ff37">都道府県選択UIの別解提案。</h2><p>アプリの初期設定で必ずと言っていいほど出てくる「都道府県の選択」。</p><p>一般的にはプルダウン（Menu）や長いリストが使われますが、使いやすさとしては微妙なところ。</p><ul><li><strong>プルダウン:</strong> 下の方の県（九州とか沖縄）を選ぶまで、延々とスクロールしなきゃいけない。</li><li><strong>日本地図:</strong> 見た目は豪華だけど、スマホの画面だとタップミスしやすいし、何より「都道府県を選ぶためだけ」に地図を配置するのは、実装もデザインも重すぎる。</li></ul><p>「もっと楽に、かつ触ってて気持ちいい方法はねぇかな」と考えた結果、辿り着いたのが**「2段構成のリールUI」**です。</p><hr><h3 id="he6d74542bf">1. 「地方」で絞り、「県」で決める2段構え</h3><p>UIを上下2段に分けました。</p><ul><li><strong>上段:</strong> 地方（関東、近畿、九州など）を選択。</li><li><strong>下段:</strong> 都道府県を選択。</li></ul><p>上段の「地方」をタップすると、下段のリールがその地方の先頭（例えば「近畿」なら三重県）まで<strong>シュバッ！と自動スクロールしてピタッと止まります。</strong></p><p>47個の長いリストを指で彷徨う必要はありません。地方を選んで、ちょろっと横にスワイプするだけ。これだけで、目的の県に辿り着くまでのスピードが劇的に上がります。ぜひ、最新のゴミ捨てリマインダーでお試しください。</p><figure><img src="https://images.microcms-assets.io/assets/a76b19f7c11346bfa4ece80cdc77f572/c9ff7c0abac84ecb91cbba9167f3d227/Simulator%20Screenshot%20-%20watch%20connected%20devide%20-%202026-04-03%20at%2013.05.11.jpg" alt="" width="1206" height="969"></figure><hr>
+      </div>
+      
+      <div class="article-footer">
+        <a href="../blog.html" class="back-to-blog">&larr; ブログ一覧へ戻る</a>
+      </div>
+    </div>
+  </article>
+
+  
+  <footer class="footer">
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="../faq.html">よくあるご質問</a></li>
+        <li><a href="../blog.html">ブログ</a></li>
+        <li><a href="../privacy.html">プライバシーポリシー</a></li>
+        <li><a href="../contact.html">お問い合わせ</a></li>
+        <li><a href="https://x.com/TytoStudi0" target="_blank">X (Twitter)</a></li>
+      </ul>
+      <p class="copyright">&copy; 2026 TytoStudio All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../js/scripts.js"></script>
+</body>
+</html>

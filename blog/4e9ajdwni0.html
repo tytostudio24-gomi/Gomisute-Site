@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ゴミ捨てリマインダーの制作背景 - ゴミ捨てリマインダー</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  
+  <!-- OGP & SEO Tags -->
+  <meta name="description" content="「毎週水曜日は燃えるゴミ」……そんな単純なスケジュール、ぶっちゃけ全国共通じゃないですよね。僕の住んでいる自治体もそうなんですが、月によって日付がバラバラだったり、第1・第3なんちゃら……みたいな、カ..." />
+  <meta property="og:title" content="ゴミ捨てリマインダーの制作背景" />
+  <meta property="og:description" content="「毎週水曜日は燃えるゴミ」……そんな単純なスケジュール、ぶっちゃけ全国共通じゃないですよね。僕の住んでいる自治体もそうなんですが、月によって日付がバラバラだったり、第1・第3なんちゃら……みたいな、カ..." />
+  <meta property="og:url" content="https://gomisute.vercel.app/blog/4e9ajdwni0.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="../default-thumbnail.jpg?w=1200&h=630&fit=crop" />
+  <meta property="og:site_name" content="ゴミ捨てリマインダー" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="google-site-verification" content="XZkDY7y-GVfQq3cuGQ9Szlr42o10cL_jCbJs-I0aBD8" />
+</head>
+<body>
+  
+  <nav class="navbar">
+    <div class="nav-content">
+      <div class="logo">
+        <a href="../index.html">
+          <img src="../gomisute-logo.jpg" alt="Logo" class="nav-logo-icon">
+          ゴミ捨てリマインダー
+        </a>
+      </div>
+      <div class="nav-actions">
+        <div class="nav-desktop-links">
+          <a href="../faq.html" class="nav-link">よくあるご質問</a>
+          <a href="../blog.html" class="nav-link">ブログ</a>
+          <a href="../privacy.html" class="nav-link">プライバシーポリシー</a>
+        </div>
+        <a href="https://apps.apple.com/jp/app/%E3%82%B4%E3%83%9F%E6%8D%A8%E3%81%A6%E3%83%AA%E3%83%9E%E3%82%A4%E3%83%B3%E3%83%80%E3%83%BC/id6758884149" target="_blank" class="nav-btn">ダウンロード</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="../faq.html" class="mobile-nav-link">よくあるご質問</a>
+      <a href="../blog.html" class="mobile-nav-link">ブログ</a>
+      <a href="../privacy.html" class="mobile-nav-link">プライバシーポリシー</a>
+    </div>
+  </nav>
+
+  
+  <article class="article-page reveal active">
+    <div class="article-hero">
+      <div class="article-hero-image" style="background-image: url('../default-thumbnail.jpg?w=2400&h=1000&fit=crop');"></div>
+    </div>
+    <div class="article-container">
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="article-date">2026.04.03</span>
+          
+        </div>
+        <h1 class="article-title">ゴミ捨てリマインダーの制作背景</h1>
+      </header>
+      
+      <div class="article-content">
+        <p>「毎週水曜日は燃えるゴミ」……そんな単純なスケジュール、ぶっちゃけ全国共通じゃないですよね。</p><p>僕の住んでいる自治体もそうなんですが、月によって日付がバラバラだったり、第1・第3なんちゃら……みたいな、カレンダーを凝視しないと分からないルールが多すぎます。</p><p>既存のゴミ通知アプリも便利なんですが、「結局、自分でポチポチ日付を設定しなきゃいけないなら、紙のカレンダー見るのと変わらなくない？」と思ってしまったんです。</p><p><strong>「めんどくさい設定、AIにカレンダー（PDF）読ませて自動でやってくれたらええやん」</strong></p><p>そんな動機で作り始めたのが、この『ゴミ捨てリマインダー』です。</p><hr><h2 id="hbc57867a8b">既存のアプリで「惜しい！」と思ってたこと</h2><p>世の中にはたくさんのゴミ出しアプリがありますが、個人的に「これじゃないんだよなぁ」と思っていたポイントが3つありました。</p><ol><li><strong>「毎週○曜日」設定しかできない:</strong> 不規則なスケジュールの自治体だと無力。</li><li><strong>地域設定ができたりする:</strong> 自分の自治体を入力すれば自動で、その地域のカレンダーをインストールできるものもあるんですが、その地域の自治体と提携してるか、自治体がAPIを発行してくれていないと実現できない。できたとしても、レビューを見る限り、システムの保守に手間や時間がかかりそうです。一度、間違ったカレンダーを渡してしまうとユーザーからの信頼も失墜します。</li><li><strong>PDFを別で開くのが手間:</strong> 分別を調べるために、わざわざブラウザで自治体のHPを探しに行くのがだるい。</li></ol><p>これらを全部、最新のiOS（iOS 18 / Xcode 26.2）のパワーで解決することにしました。</p><hr><h2 id="h171775d533">ゴミ捨てリマインダーに「わがまま」を詰め込みました</h2><h3 id="hcc73225006">カレンダーをAIが「読む」</h3><p>自治体のサイトから直接PDFを取得して、複雑なスケジュールも精度高く解析。手入力の苦行から解放されます。</p><h3 id="hac401880c9">「みんなの検索履歴」でズルをする</h3><p>他のユーザーが過去に探したデータを活用して、あなたの地域の分別ルールやPDFを爆速で見つけられるようにしました。もちろん個人情報は一切取ってないので、匿名で「お互い楽をしようぜ」という仕組みです。</p><hr><h2 id="hefffeb2029">「自分が一生使いたいもの」を作っています</h2><p>個人開発のアプリなので、企業が作るような「万人受けする完璧なもの」ではないかもしれません。でも、**「不規則なゴミの日に振り回されたくない」「設定に時間をかけたくない」**という人には、間違いなく刺さるはず。</p><p>「あ、今日ゴミの日だったのに！」と後悔する朝を、僕と一緒にゼロにしませんか？</p>
+      </div>
+      
+      <div class="article-footer">
+        <a href="../blog.html" class="back-to-blog">&larr; ブログ一覧へ戻る</a>
+      </div>
+    </div>
+  </article>
+
+  
+  <footer class="footer">
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="../faq.html">よくあるご質問</a></li>
+        <li><a href="../blog.html">ブログ</a></li>
+        <li><a href="../privacy.html">プライバシーポリシー</a></li>
+        <li><a href="../contact.html">お問い合わせ</a></li>
+        <li><a href="https://x.com/TytoStudi0" target="_blank">X (Twitter)</a></li>
+      </ul>
+      <p class="copyright">&copy; 2026 TytoStudio All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../js/scripts.js"></script>
+</body>
+</html>
