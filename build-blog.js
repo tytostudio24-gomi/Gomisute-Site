@@ -458,6 +458,8 @@ function generateAreaIndex(municipalities) {
     h: m.has_official_app
   })));
 
+  const prefOptionsHtml = Object.entries(prefNames).map(([code, name]) => `<option value="${code}">${name}</option>`).join('');
+
   return `<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -482,7 +484,7 @@ function generateAreaIndex(municipalities) {
     <div class="stats-card">
       <h1>全国自治体ゴミアプリ調査</h1>
       <p>AIによる分析の結果、日本全国の市町村のうち</p>
-      <span class="stats-number">約 \${percentage}%</span>
+      <span class="stats-number">約 ${percentage}%</span>
       <p>の自治体には、公式アプリがないと思われます。</p>
     </div>
 
@@ -491,7 +493,7 @@ function generateAreaIndex(municipalities) {
       <div class="search-grid">
         <select id="pref-select">
           <option value="">都道府県を選択</option>
-          \${Object.entries(prefNames).map(([code, name]) => \`<option value="\${code}">\${name}</option>\`).join('')}
+          ${prefOptionsHtml}
         </select>
         <select id="muni-select" disabled>
           <option value="">市区町村を選択</option>
