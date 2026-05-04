@@ -23,16 +23,35 @@ const prefNames = {
 };
 
 async function fetchMunicipalities() {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/municipalities?select=id,name,prefecture_code,has_official_app,app_name,garbage_page_url,homepage_url&order=prefecture_code.asc,name.asc`, {
-    headers: {
-      "apikey": SUPABASE_KEY,
-      "Authorization": `Bearer ${SUPABASE_KEY}`
+  let allMunicipalities = [];
+  let from = 0;
+  const step = 1000;
+  let hasMore = true;
+
+  while (hasMore) {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/municipalities?select=id,name,prefecture_code,has_official_app,app_name,garbage_page_url,homepage_url&order=prefecture_code.asc,name.asc`, {
+      headers: {
+        "apikey": SUPABASE_KEY,
+        "Authorization": `Bearer ${SUPABASE_KEY}`,
+        "Range": `${from}-${from + step - 1}`
+      }
+    });
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch municipalities: ${res.status} ${res.statusText}`);
     }
-  });
-  if (!res.ok) {
-    throw new Error(`Failed to fetch municipalities: ${res.status} ${res.statusText}`);
+
+    const data = await res.json();
+    allMunicipalities = allMunicipalities.concat(data);
+
+    if (data.length < step) {
+      hasMore = false;
+    } else {
+      from += step;
+    }
   }
-  return await res.json();
+
+  return allMunicipalities;
 }
 
 async function fetchBlogs() {
