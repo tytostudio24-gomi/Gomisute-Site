@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>全国自治体ゴミアプリ導入状況調査 - ゴミ捨てリマインダー</title>
-  <meta name="description" content="AIによる調査の結果、日本全国の自治体のうち約72%に公式ゴミ収集アプリがないと思われます。お住まいの市区町村の状況を確認できます。">
   <link rel="stylesheet" href="../css/styles.css">
   <style>
     .area-index { max-width: 900px; margin: 120px auto 80px; padding: 0 20px; }
@@ -15,7 +14,6 @@
     select { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #ddd; font-size: 16px; appearance: none; background: #f9f9f9; }
     .result-box { margin-top: 40px; padding: 30px; border-radius: 20px; display: none; text-align: center; animation: fadeIn 0.5s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    .text-link { color: var(--color-accent); text-decoration: none; font-weight: 500; }
   </style>
 </head>
 <body>
@@ -53,7 +51,7 @@
     <div class="stats-card">
       <h1>全国自治体ゴミアプリ調査</h1>
       <p>AIによる分析の結果、日本全国の市町村のうち</p>
-      <span class="stats-number">約 72%</span>
+      <span class="stats-number">約 ${percentage}%</span>
       <p>の自治体には、公式アプリがないと思われます。</p>
     </div>
 
@@ -62,7 +60,7 @@
       <div class="search-grid">
         <select id="pref-select">
           <option value="">都道府県を選択</option>
-          <option value="1">北海道</option><option value="2">青森県</option><option value="3">岩手県</option><option value="4">宮城県</option><option value="5">秋田県</option><option value="6">山形県</option><option value="7">福島県</option><option value="8">茨城県</option><option value="9">栃木県</option><option value="10">群馬県</option><option value="11">埼玉県</option><option value="12">千葉県</option><option value="13">東京都</option><option value="14">神奈川県</option><option value="15">新潟県</option><option value="16">富山県</option><option value="17">石川県</option><option value="18">福井県</option><option value="19">山梨県</option><option value="20">長野県</option><option value="21">岐阜県</option><option value="22">静岡県</option><option value="23">愛知県</option><option value="24">三重県</option><option value="25">滋賀県</option><option value="26">京都府</option><option value="27">大阪府</option><option value="28">兵庫県</option><option value="29">奈良県</option><option value="30">和歌山県</option><option value="31">鳥取県</option><option value="32">島根県</option><option value="33">岡山県</option><option value="34">広島県</option><option value="35">山口県</option><option value="36">徳島県</option><option value="37">香川県</option><option value="38">愛媛県</option><option value="39">高知県</option><option value="40">福岡県</option><option value="41">佐賀県</option><option value="42">長崎県</option><option value="43">熊本県</option><option value="44">大分県</option><option value="45">宮崎県</option><option value="46">鹿児島県</option><option value="47">沖縄県</option>
+          ${Object.entries(prefNames).map(([code, name]) => `<option value="${code}">${name}</option>`).join('')}
         </select>
         <select id="muni-select" disabled>
           <option value="">市区町村を選択</option>
@@ -78,12 +76,12 @@
     const muniSelect = document.getElementById('muni-select');
     const resultBox = document.getElementById('result-box');
 
-    prefSelect.addEventListener('change', function() {
+    prefSelect.addEventListener('change', () => {
       const prefCode = parseInt(prefSelect.value);
       muniSelect.innerHTML = '<option value="">市区町村を選択</option>';
       if (prefCode) {
-        const filtered = munis.filter(function(m) { return m.p === prefCode; });
-        filtered.forEach(function(m) {
+        const filtered = munis.filter(m => m.p === prefCode);
+        filtered.forEach(m => {
           const opt = document.createElement('option');
           opt.value = m.n;
           opt.textContent = m.n;
@@ -96,17 +94,17 @@
       resultBox.style.display = 'none';
     });
 
-    muniSelect.addEventListener('change', function() {
+    muniSelect.addEventListener('change', () => {
       const muniName = muniSelect.value;
       if (muniName) {
-        const muni = munis.find(function(m) { return m.n === muniName; });
+        const muni = munis.find(m => m.n === muniName);
         resultBox.style.display = 'block';
         if (muni.h) {
           resultBox.style.backgroundColor = '#e6f7ff';
-          resultBox.innerHTML = '<h3>' + muniName + 'には公式アプリがあるようです</h3><p>便利な公式アプリを活用しましょう。さらにApple Watch等での通知を希望される場合は、ゴミ捨てリマインダーも併用いただけます。</p><a href="' + muniName + '.html" class="text-link">詳しく見る &rarr;</a>';
+          resultBox.innerHTML = \`<h3>\${muniName}には公式アプリがあるようです</h3><p>便利な公式アプリを活用しましょう。さらにApple Watch等での通知を希望される場合は、ゴミ捨てリマインダーも併用いただけます。</p><a href="\${muniName}.html" class="text-link">詳しく見る &rarr;</a>\`;
         } else {
           resultBox.style.backgroundColor = '#fff9e6';
-          resultBox.innerHTML = '<h3>' + muniName + 'には公式アプリがないと思われます</h3><p>ゴミ捨てリマインダーなら、紙のカレンダーをスキャンするだけでリマインダーを作成できます。</p><a href="' + muniName + '.html" class="cta-button" style="margin-top:20px; display:inline-block;">詳しく見る</a>';
+          resultBox.innerHTML = \`<h3>\${muniName}には公式アプリがないと思われます</h3><p>ゴミ捨てリマインダーなら、紙のカレンダーをスキャンするだけでリマインダーを作成できます。</p><a href="\${muniName}.html" class="cta-button" style="margin-top:20px; display:inline-block;">詳しく見る</a>\`;
         }
       } else {
         resultBox.style.display = 'none';

@@ -376,14 +376,14 @@ function generateMunicipalityPage(muni, allInPref) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>\${title}</title>
+  <title>${title}</title>
   
-  <meta name="description" content="\${description}">
-  <meta property="og:title" content="\${title}">
-  <meta property="og:description" content="\${description}">
+  <meta name="description" content="${description}">
+  <meta property="og:title" content="${title}">
+  <meta property="og:description" content="${description}">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="\${SITE_URL}/area/\${muni.name}.html">
-  <meta property="og:image" content="\${SITE_URL}/gomisute-logo.jpg">
+  <meta property="og:url" content="${SITE_URL}/area/${muni.name}.html">
+  <meta property="og:image" content="${SITE_URL}/gomisute-logo.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="stylesheet" href="../css/styles.css">
@@ -407,14 +407,14 @@ function generateMunicipalityPage(muni, allInPref) {
   </style>
 </head>
 <body>
-  \${getNavHtml('../')}
+  ${getNavHtml('../')}
   <main class="area-content">
     <div class="area-header">
-      <span style="color: var(--color-accent); font-weight: 600;">\${prefName} \${muni.name}</span>
-      <h1>\${muni.name}のゴミ捨てを、<br>もっとスマートに。</h1>
+      <span style="color: var(--color-accent); font-weight: 600;">${prefName} ${muni.name}</span>
+      <h1>${muni.name}のゴミ捨てを、<br>もっとスマートに。</h1>
     </div>
 
-    \${officialAppNotice}
+    ${officialAppNotice}
 
     <div class="feature-card">
       <h2>自治体のデータ提供状況に左右されません</h2>
@@ -439,10 +439,10 @@ function generateMunicipalityPage(muni, allInPref) {
       </ul>
     </div>
   </main>
-  \${getFooterHtml('../')}
+  ${getFooterHtml('../')}
   <script src="../js/scripts.js"></script>
 </body>
-</html>\`;
+</html>`;
 }
 
 function generateAreaIndex(municipalities) {
@@ -458,7 +458,7 @@ function generateAreaIndex(municipalities) {
     h: m.has_official_app
   })));
 
-  return \`<!DOCTYPE html>
+  return `<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -477,7 +477,7 @@ function generateAreaIndex(municipalities) {
   </style>
 </head>
 <body>
-  \${getNavHtml('../')}
+  ${getNavHtml('../')}
   <main class="area-index">
     <div class="stats-card">
       <h1>全国自治体ゴミアプリ調査</h1>
@@ -502,7 +502,7 @@ function generateAreaIndex(municipalities) {
   </main>
 
   <script>
-    const munis = \${muniDataJson};
+    const munis = ${muniDataJson};
     const prefSelect = document.getElementById('pref-select');
     const muniSelect = document.getElementById('muni-select');
     const resultBox = document.getElementById('result-box');
@@ -542,19 +542,19 @@ function generateAreaIndex(municipalities) {
       }
     });
   </script>
-  \${getFooterHtml('../')}
+  ${getFooterHtml('../')}
 </body>
-</html>\`;
+</html>`;
 }
 
 function generateSitemap(blogs, municipalities) {
   const currentDate = new Date().toISOString();
   let urls = `
-    < url >
+  <url>
     <loc>${SITE_URL}/</loc>
     <lastmod>${currentDate}</lastmod>
     <priority>1.0</priority>
-  </url >
+  </url>
   <url>
     <loc>${SITE_URL}/area/index.html</loc>
     <lastmod>${currentDate}</lastmod>
@@ -588,27 +588,26 @@ function generateSitemap(blogs, municipalities) {
   </url>`;
 
   blogs.forEach(blog => {
-    // publishedAt or updatedAt
     let modDate = new Date(blog.updatedAt || blog.publishedAt).toISOString();
     urls += `
-    < url >
+  <url>
     <loc>${SITE_URL}/blog/${blog.id}.html</loc>
     <lastmod>${modDate}</lastmod>
     <priority>0.7</priority>
-  </url > `;
+  </url>`;
   });
 
   municipalities.forEach(muni => {
     urls += `
-    < url >
+  <url>
     <loc>${SITE_URL}/area/${encodeURIComponent(muni.name)}.html</loc>
     <priority>0.6</priority>
-  </url > `;
+  </url>`;
   });
 
-  return `<? xml version = "1.0" encoding = "UTF-8" ?>
-    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}
-    </urlset>`;
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}
+</urlset>`;
 }
 
 async function build() {
