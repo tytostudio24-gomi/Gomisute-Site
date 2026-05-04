@@ -418,7 +418,7 @@ function generateMunicipalityPage(muni, allInPref) {
 
     <div class="feature-card">
       <h2>自治体のデータ提供状況に左右されません</h2>
-      <p>「ゴミ捨てリマインダー」は、自治体がオープンデータを提供しているか・公式のアプリがあるかに関わりなく、**全戸に配布される紙のごみ収集カレンダーをAIカメラで撮影するだけ**で、あなた専用の通知スケジュールを作成できます。</p>
+      <p>「ゴミ捨てリマインダー」は、自治体がオープンデータを提供しているか・公式のアプリがあるかに関わりなく、<strong>全戸に配布される紙のごみ収集カレンダーをAIカメラで撮影するだけ</strong>で、あなた専用の通知スケジュールを作成できます。</p>
       <p>公式アプリがない地域や、PDFしか公開されていない地域でも、今日からすぐに「忘れないゴミ捨て」を始められます。</p>
     </div>
 
@@ -433,9 +433,9 @@ function generateMunicipalityPage(muni, allInPref) {
     </div>
 
     <div class="related-areas">
-      <h3>\${prefName}の他の自治体</h3>
+      <h3>${prefName}の他の自治体</h3>
       <ul>
-        \${relatedLinksHtml}
+        ${relatedLinksHtml}
       </ul>
     </div>
   </main>
@@ -613,7 +613,7 @@ function generateSitemap(blogs, municipalities) {
 async function build() {
   console.log("Fetching blogs from MicroCMS...");
   const blogs = await fetchBlogs();
-  console.log(`Fetched ${ blogs.length } articles.`);
+  console.log(`Fetched ${blogs.length} articles.`);
 
   console.log("Generating blog.html...");
   const indexHtml = generateBlogIndex(blogs);
@@ -624,7 +624,7 @@ async function build() {
 
   console.log("Fetching FAQs from MicroCMS...");
   const faqs = await fetchFaqs();
-  console.log(`Fetched ${ faqs.length } FAQs.`);
+  console.log(`Fetched ${faqs.length} FAQs.`);
 
   console.log("Generating faq.html...");
   const faqHtml = generateFaqPage(faqs);
@@ -641,13 +641,13 @@ async function build() {
   console.log("Generating article pages...");
   for (const blog of blogs) {
     const articleHtml = generateArticlePage(blog);
-    fs.writeFileSync(path.join(blogDir, `${ blog.id }.html`), articleHtml);
-    console.log(` -> Created blog / ${ blog.id }.html`);
+    fs.writeFileSync(path.join(blogDir, `${blog.id}.html`), articleHtml);
+    console.log(` -> Created blog / ${blog.id}.html`);
   }
 
   console.log("Fetching municipalities from Supabase...");
   const municipalities = await fetchMunicipalities();
-  console.log(`Fetched ${ municipalities.length } municipalities.`);
+  console.log(`Fetched ${municipalities.length} municipalities.`);
 
   const areaDir = path.join(__dirname, 'area');
   if (!fs.existsSync(areaDir)) {
@@ -665,15 +665,15 @@ async function build() {
     // "No app, use this" or "Official app exists, but this is also good".
     const inPref = municipalities.filter(m => m.prefecture_code === muni.prefecture_code);
     const muniHtml = generateMunicipalityPage(muni, inPref);
-    fs.writeFileSync(path.join(areaDir, `${ muni.name }.html`), muniHtml);
+    fs.writeFileSync(path.join(areaDir, `${muni.name}.html`), muniHtml);
   }
-  console.log(` -> Created ${ municipalities.length } area pages.`);
+  console.log(` -> Created ${municipalities.length} area pages.`);
 
   console.log("Generating SEO files (sitemap.xml and robots.txt)...");
   fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), generateSitemap(blogs, municipalities));
   fs.writeFileSync(path.join(__dirname, 'robots.txt'), `User - agent: *
     Allow: /
-  Sitemap: ${ SITE_URL }/sitemap.xml
+  Sitemap: ${SITE_URL}/sitemap.xml
     `);
 
   console.log("Blog and Area generation successfully completed 🎉");
