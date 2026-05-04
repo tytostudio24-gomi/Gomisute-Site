@@ -534,10 +534,10 @@ function generateAreaIndex(municipalities) {
         resultBox.style.display = 'block';
         if (muni.h) {
           resultBox.style.backgroundColor = '#e6f7ff';
-          resultBox.innerHTML = \\\`<h3>\\\${muniName}には公式アプリがあるようです</h3><p>便利な公式アプリを活用しましょう。さらにApple Watch等での通知を希望される場合は、ゴミ捨てリマインダーも併用いただけます。</p><a href="\\\${muniName}.html" class="text-link">詳しく見る &rarr;</a>\\\`;
+          resultBox.innerHTML = '<h3>' + muniName + 'には公式アプリがあるようです</h3><p>便利な公式アプリを活用しましょう。さらにApple Watch等での通知を希望される場合は、ゴミ捨てリマインダーも併用いただけます。</p><a href="' + muniName + '.html" class="text-link">詳しく見る &rarr;</a>';
         } else {
           resultBox.style.backgroundColor = '#fff9e6';
-          resultBox.innerHTML = \\\`<h3>\\\${muniName}には公式アプリがないと思われます</h3><p>ゴミ捨てリマインダーなら、紙のカレンダーをスキャンするだけでリマインダーを作成できます。</p><a href="\\\${muniName}.html" class="cta-button" style="margin-top:20px; display:inline-block;">詳しく見る</a>\\\`;
+          resultBox.innerHTML = '<h3>' + muniName + 'には公式アプリがないと思われます</h3><p>ゴミ捨てリマインダーなら、紙のカレンダーをスキャンするだけでリマインダーを作成できます。</p><a href="' + muniName + '.html" class="cta-button" style="margin-top:20px; display:inline-block;">詳しく見る</a>';
         }
       } else {
         resultBox.style.display = 'none';
