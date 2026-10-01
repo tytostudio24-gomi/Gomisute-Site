@@ -1,4 +1,3 @@
-User - agent: *
-    Allow: /
-  Sitemap: https://gomisute-site.vercel.app/sitemap.xml
-    
+User-agent: *
+Allow: /
+Sitemap: https://gomisute-site.vercel.app/sitemap.xml
